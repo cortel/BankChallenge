@@ -27,6 +27,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BankChallenge.Common\BankChallenge.Common.csproj" />
+	  <ProjectReference Include="..\BankChallenge.Services\BankChallenge.Services.csproj" />
 	</ItemGroup>
 
 </Project>

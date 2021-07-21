@@ -1,6 +1,7 @@
 namespace BankChallenge
 {
     using BankChallenge.Common.Configuration;
+    using BankChallenge.Services.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,14 +29,21 @@ namespace BankChallenge
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddSingleton(Configuration);
+
+            services.AddHttpClient();
+
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BankChallenge", Version = "v1" });
             });
 
-            services
-               .Configure<LoanConfiguration>(options => Configuration.GetSection("LoanConfig").Bind(options));
+            services.Configure<LoanConfiguration>(options => Configuration.GetSection("LoanConfig").Bind(options));
+
+
+            services.AddTransient<IPaymentService, PaymentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
