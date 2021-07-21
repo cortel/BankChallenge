@@ -13,6 +13,5 @@
         public decimal TotalPaidInterestRate { get; set; }
 
         public decimal TotalPaidAdminFees { get; set; }
-
     }
 }
