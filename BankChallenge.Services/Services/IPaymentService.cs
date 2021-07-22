@@ -6,5 +6,13 @@
     public interface IPaymentService
     {
         Task<Payment> Create();
+
+        Task<decimal> CalculateAPR();
+
+        Task<decimal> CalculateMonthlyPayment();
+
+        Task<decimal> CalculateAmountInterestRate();
+
+        Task<decimal> CalculateAdministrationFees();
     }
 }
