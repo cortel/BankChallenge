@@ -22,7 +22,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.Services", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.API.Test", "..\BankChallenge.Api.Test\BankChallenge.API.Test.csproj", "{2944696C-7133-45AA-9C39-407297D78EBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.DateContext.Test", "..\BankChallenge.DateContext.Test\BankChallenge.DateContext.Test.csproj", "{5325BC0E-047C-4545-B2CA-B7BE79EF0121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.DataContext.Test", "..\BankChallenge.DateContext.Test\BankChallenge.DataContext.Test.csproj", "{5325BC0E-047C-4545-B2CA-B7BE79EF0121}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.Services.Test", "..\BankChallenge.Services.Test\BankChallenge.Services.Test.csproj", "{ADD231C1-EB0D-41E5-89CE-99758F397DFA}"
 EndProject
