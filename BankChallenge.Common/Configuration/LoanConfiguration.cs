@@ -4,7 +4,7 @@
     {
         public decimal AnnualInterestRate { get; set; }
 
-        public decimal AdminFeePercentage{ get; set; }
+        public decimal AdminFeePercentage { get; set; }
 
         public decimal AdminFeeFixed { get; set; }
     }

@@ -2,10 +2,19 @@
 {
     using System;
     using System.Threading.Tasks;
+    using BankChallenge.Common.Configuration;
     using BankChallenge.Services.Models.Out.Payment;
+    using Microsoft.Extensions.Options;
 
     public class PaymentService : IPaymentService
     {
+        private readonly LoanConfiguration loanConfig;
+
+        public PaymentService(IOptions<LoanConfiguration> options)
+        {
+            this.loanConfig = options.Value;
+        }
+
         public Task<decimal> CalculateAdministrationFees()
         {
             throw new NotImplementedException();
@@ -27,9 +36,9 @@
         // n = Total number of payments or periods
         // The formula for calculating your monthly payment is:
         // A = P { r(1 + r)n} / { (1 + r)n –1}
-        public async Task<decimal> CalculateMonthlyPayment(decimal totalLoan, decimal annualInterestRate, decimal totalPeriodYears)
+        public async Task<decimal> CalculateMonthlyPayment(decimal totalLoan,  decimal totalPeriodYears)
         {
-            var ratePerPeriod = await CalculateInterestRatePerPeriod(annualInterestRate);
+            var ratePerPeriod = await CalculateInterestRatePerPeriod(this.loanConfig.AnnualInterestRate);
             var totalPeriods = await CalculateTotalNumberOfPeriods(totalPeriodYears);
 
             // this might not be the best approach. a proper way would be to extend Math.Pow to take decimals.

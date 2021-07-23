@@ -9,7 +9,7 @@
 
         Task<decimal> CalculateAPR();
 
-        Task<decimal> CalculateMonthlyPayment(decimal totalLoan, decimal annualInterestRate, decimal totalPeriodYears);
+        Task<decimal> CalculateMonthlyPayment(decimal totalLoan, decimal totalPeriodYears);
 
         Task<decimal> CalculateAmountInterestRate();
 
