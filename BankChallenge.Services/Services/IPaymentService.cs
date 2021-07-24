@@ -5,7 +5,7 @@
 
     public interface IPaymentService
     {
-        Task<Payment> Create();
+        Task<Payment> Create(decimal totalLoan, decimal totalPeriodYears);
 
         Task<decimal> CalculateAPR();
 

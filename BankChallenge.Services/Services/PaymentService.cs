@@ -25,9 +25,13 @@
             throw new NotImplementedException();
         }
 
-        public Task<decimal> CalculateAPR()
+        // compounding period = 12 months
+        // effective apr formula source https://www.fool.com/knowledge-center/what-are-the-differences-between-apr-ear/
+        public async Task<decimal> CalculateAPR()
         {
-            throw new NotImplementedException();
+            var periodicRate = CalculateInterestRatePerPeriod(loanConfig.AnnualInterestRate).GetAwaiter().GetResult();
+
+            return (((decimal)Math.Pow((double)(1 + periodicRate), 12)) - 1) * 100;
         }
 
         // A = Payment amount per period
@@ -36,6 +40,7 @@
         // n = Total number of payments or periods
         // The formula for calculating your monthly payment is:
         // A = P { r(1 + r)n} / { (1 + r)n –1}
+        // refference https://www.vertex42.com/ExcelArticles/amortization-calculation.html
         public async Task<decimal> CalculateMonthlyPayment(decimal totalLoan,  decimal totalPeriodYears)
         {
             var ratePerPeriod = await CalculateInterestRatePerPeriod(this.loanConfig.AnnualInterestRate);
@@ -53,12 +58,26 @@
             return (totalLoan * ratePerPeriod * rateAtPowerOfPeriods) / (rateAtPowerOfPeriods - 1);
         }
 
-        public async Task<Payment> Create()
+        public async Task<Payment> Create(decimal totalLoan, decimal totalPeriodYears)
         {
-            throw new NotImplementedException();
+            var apr = await CalculateAPR();
+            var monthlyCost = await CalculateMonthlyPayment(totalLoan, totalPeriodYears);
+            var totalPaidInterestRate = await CalculateAmountInterestRate();
+            var totalPaidAdminFees = await CalculateAdministrationFees();
+
+            var payment = new Payment()
+            {
+                APR = apr,
+                MontlyCost = monthlyCost,
+                TotalPaidAdminFees = totalPaidAdminFees,
+                TotalPaidInterestRate = totalPaidInterestRate,
+            };
+
+            return payment;
         }
 
         // annual interest rate converted to percentage and divided by 12 months
+        // also known as periodicRate
         private static async Task<decimal> CalculateInterestRatePerPeriod(decimal annualInterestRate)
         {
             // can't await here. i will await on metho call.

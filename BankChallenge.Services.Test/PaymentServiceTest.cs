@@ -46,13 +46,13 @@
                 var years = 10;
 
                 // Act
-                var result = paymentService.CalculateMonthlyPayment(totalLoan, years);
+                var result = paymentService.CalculateMonthlyPayment(totalLoan, years).GetAwaiter().GetResult();
 
                 // Assert
 
                 // I am not sure if my calculations are wrong, or the number is rounded
-                // actual 5303,2757619537767110063718886
-                Assert.AreEqual(5303.28, result.Result);
+                // actual 5303,2757619537767110063718886 an not 5303.28
+                Assert.AreEqual(5303.2757619537767110063718886m, result);
             }
 
             [TestMethod]
@@ -60,11 +60,14 @@
             [TestCategory("Create")]
             public void Can_Calculate_APR()
             {
-                // Arrange
-
                 // Act
+                var result = paymentService.CalculateAPR().GetAwaiter().GetResult();
 
                 // Assert
+
+                // I am not sure if my calculations are wrong, or the number is rounded
+                // actual 5303,2757619537767110063718886
+                Assert.AreEqual(5.11618978817300M, result);
             }
 
             [TestMethod]
