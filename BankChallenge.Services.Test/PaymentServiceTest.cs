@@ -6,6 +6,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Options;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using System.Threading.Tasks;
 
     public class PaymentServiceTest
     {
@@ -14,11 +15,14 @@
 
         public PaymentServiceTest()
         {
-            // to compare if values are correctly passed from json
-           var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            // better unit tests will need to read from appsettings.
+            // var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            loanConfig = Options.Create(new LoanConfiguration());
+            loanConfig.Value.AdminFeeFixed = 10000;
+            loanConfig.Value.AdminFeePercentage = 1;
+            loanConfig.Value.AnnualInterestRate = 5;
 
-           loanConfig = Options.Create(new LoanConfiguration());
-           paymentService = new PaymentService(loanConfig);
+            paymentService = new PaymentService(loanConfig);
         }
 
         [TestClass]
@@ -45,7 +49,11 @@
                 var result = paymentService.CalculateMonthlyPayment(totalLoan, years);
 
                 // Assert
-                Assert.AreEqual(5303.28, result);
+
+                // I am not sure if my calculations are wrong, or the number is rounded
+                // actual 5303,2757619537767110063718886
+
+                Assert.AreEqual(5303.28, result.Result);
             }
 
             [TestMethod]
