@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.API", "BankChallenge.API.csproj", "{A1FFA7C2-2E33-42A3-9A63-2766FF748CD4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.API", "BankChallenge.API.csproj", "{A1FFA7C2-2E33-42A3-9A63-2766FF748CD4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CE1FC99C-52BB-4319-9F39-947A39A634FB}"
 	ProjectSection(SolutionItems) = preProject
@@ -14,17 +14,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1C287652-B5B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F344C7ED-7241-45CE-9A9F-F0BA7714DBDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.Common", "..\BankChallenge.Common\BankChallenge.Common.csproj", "{08A553B4-C030-4592-9D90-8C155C146F4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.Common", "..\BankChallenge.Common\BankChallenge.Common.csproj", "{08A553B4-C030-4592-9D90-8C155C146F4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.DataContext", "..\BankChallenge.DataContext\BankChallenge.DataContext.csproj", "{2EBCC6E1-D471-4D96-AF2B-F081F85F5EB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.DataContext", "..\BankChallenge.DataContext\BankChallenge.DataContext.csproj", "{2EBCC6E1-D471-4D96-AF2B-F081F85F5EB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.Services", "..\BankChallenge.Services\BankChallenge.Services.csproj", "{AF23093C-6A07-40EF-89F1-8CA48D664828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.Services", "..\BankChallenge.Services\BankChallenge.Services.csproj", "{AF23093C-6A07-40EF-89F1-8CA48D664828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.API.Test", "..\BankChallenge.Api.Test\BankChallenge.API.Test.csproj", "{2944696C-7133-45AA-9C39-407297D78EBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.API.Test", "..\BankChallenge.Api.Test\BankChallenge.API.Test.csproj", "{2944696C-7133-45AA-9C39-407297D78EBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.DataContext.Test", "..\BankChallenge.DateContext.Test\BankChallenge.DataContext.Test.csproj", "{5325BC0E-047C-4545-B2CA-B7BE79EF0121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.DataContext.Test", "..\BankChallenge.DateContext.Test\BankChallenge.DataContext.Test.csproj", "{5325BC0E-047C-4545-B2CA-B7BE79EF0121}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankChallenge.Services.Test", "..\BankChallenge.Services.Test\BankChallenge.Services.Test.csproj", "{ADD231C1-EB0D-41E5-89CE-99758F397DFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankChallenge.Services.Test", "..\BankChallenge.Services.Test\BankChallenge.Services.Test.csproj", "{ADD231C1-EB0D-41E5-89CE-99758F397DFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
