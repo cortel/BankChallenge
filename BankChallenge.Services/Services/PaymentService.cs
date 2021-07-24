@@ -15,14 +15,18 @@
             this.loanConfig = options.Value;
         }
 
-        public Task<decimal> CalculateAdministrationFees()
+        public async Task<decimal> CalculateAdministrationFees(decimal totalLoan)
         {
-            throw new NotImplementedException();
+            var percentageFee = (totalLoan * loanConfig.AdminFeePercentage) / 100;
+
+            return percentageFee > loanConfig.AdminFeeFixed ? loanConfig.AdminFeeFixed : percentageFee;
         }
 
-        public Task<decimal> CalculateAmountInterestRate()
+        // source https://www.wikihow.com/Find-the-Total-Amount-Paid-in-an-Interest-Rate-Equation
+        public async Task<decimal> CalculateAmountInterestRate(decimal totalLoan, decimal totalPeriodYears)
         {
-            throw new NotImplementedException();
+            var nominalRate = CalculateAPR().GetAwaiter().GetResult() ;
+            return (totalLoan * ((decimal)Math.Pow((double)(1 + (nominalRate / 100)), (double)totalPeriodYears))) - totalLoan;
         }
 
         // compounding period = 12 months
@@ -60,10 +64,13 @@
 
         public async Task<Payment> Create(decimal totalLoan, decimal totalPeriodYears)
         {
+            // the code can be much shorter but i believe is a matter of style
+            // i like to see the values i get
+            // i coul simply return a new payment created directly with called functions
             var apr = await CalculateAPR();
             var monthlyCost = await CalculateMonthlyPayment(totalLoan, totalPeriodYears);
-            var totalPaidInterestRate = await CalculateAmountInterestRate();
-            var totalPaidAdminFees = await CalculateAdministrationFees();
+            var totalPaidInterestRate = await CalculateAmountInterestRate(totalLoan, totalPeriodYears);
+            var totalPaidAdminFees = await CalculateAdministrationFees(totalLoan);
 
             var payment = new Payment()
             {

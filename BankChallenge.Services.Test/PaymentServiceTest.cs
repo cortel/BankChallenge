@@ -34,6 +34,8 @@
             [TestCategory("Create")]
             public void Can_Create_Payment()
             {
+                // more of an integration test.
+
             }
 
             [TestMethod]
@@ -76,22 +78,44 @@
             public void Can_Calculate_Total_Amount_Interest_Rate()
             {
                 // Arrange
+                var totalLoan = 500000;
+                var years = 10;
 
                 // Act
+                var result = paymentService.CalculateAmountInterestRate(totalLoan, years).GetAwaiter().GetResult();
 
                 // Assert
+                Assert.AreEqual(136393.09M, result);
             }
 
             [TestMethod]
             [TestCategory("Payment")]
             [TestCategory("Create")]
-            public void Can_Calculate_Total_Administration_Fees()
+            public void Can_Calculate_Total_Administration_Fees_With_Fixed()
             {
                 // Arrange
+                var totalLoan = 500000;
 
                 // Act
+                var result = paymentService.CalculateAdministrationFees(totalLoan).GetAwaiter().GetResult();
 
                 // Assert
+                Assert.AreEqual(5000M, result);
+            }
+
+            [TestMethod]
+            [TestCategory("Payment")]
+            [TestCategory("Create")]
+            public void Can_Calculate_Total_Administration_Fees_With_Percentage()
+            {
+                // Arrange
+                var totalLoan = 500000000;
+
+                // Act
+                var result = paymentService.CalculateAdministrationFees(totalLoan).GetAwaiter().GetResult();
+
+                // Assert
+                Assert.AreEqual(10000M, result);
             }
         }
     }
