@@ -87,6 +87,7 @@
                 var totalLoan = 500000;
                 var years = 10;
                 var monthlyPay = 5303.28M;
+
                 // Act
                 var result = paymentService.CalculateAmountInterestRate(totalLoan, years, monthlyPay).GetAwaiter().GetResult();
 
