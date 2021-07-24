@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BankChallenge.Services.Models.Out.Payment;
+using BankChallenge.Services.Services;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,31 +12,22 @@ namespace BankChallenge.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ApiVersion("1.0")]
     public class PaymentServiceController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly IPaymentService paymentService;
 
-        private readonly ILogger<PaymentServiceController> _logger;
-
-        public PaymentServiceController(ILogger<PaymentServiceController> logger)
+        public PaymentServiceController(IPaymentService paymentService)
         {
-            _logger = logger;
+            this.paymentService = paymentService;
         }
 
-        [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet, Route("api/v{version}/payment/create/{totalLoan}/{totalYears}")]
+        [SwaggerResponse(200, "Create Payment was successfully retrieved.", typeof(Payment))]
+        public async Task<ActionResult<Payment>> GetPayment(decimal totalLoan, decimal totalYears)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var result = await paymentService.Create(totalLoan, totalYears);
+            return result;
         }
     }
 }
