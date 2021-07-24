@@ -31,13 +31,13 @@
             }
         }
 
-        // source https://www.wikihow.com/Find-the-Total-Amount-Paid-in-an-Interest-Rate-Equation
-        public async Task<decimal> CalculateAmountInterestRate(decimal totalLoan, decimal totalPeriodYears)
+        // source self logic : i get the monthly pay, get total amount paid, and subtract initial loan.
+        public async Task<decimal> CalculateAmountInterestRate(decimal totalLoan, decimal totalPeriodYears, decimal monthlyPayment)
         {
             try
             {
-                var nominalRate = CalculateAPR().GetAwaiter().GetResult();
-                return (totalLoan * ((decimal)Math.Pow((double)(1 + (nominalRate / 100)), (double)totalPeriodYears))) - totalLoan;
+                var totalPaid = monthlyPayment * totalPeriodYears * 12;
+                return totalPaid - totalLoan;
             }
             catch (Exception ex)
             {
@@ -104,7 +104,7 @@
                 // i coul simply return a new payment created directly with called functions
                 var apr = await CalculateAPR();
                 var monthlyCost = await CalculateMonthlyPayment(totalLoan, totalPeriodYears);
-                var totalPaidInterestRate = await CalculateAmountInterestRate(totalLoan, totalPeriodYears);
+                var totalPaidInterestRate = await CalculateAmountInterestRate(totalLoan, totalPeriodYears, monthlyCost);
                 var totalPaidAdminFees = await CalculateAdministrationFees(totalLoan);
 
                 var payment = new Payment()

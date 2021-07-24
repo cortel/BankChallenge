@@ -11,7 +11,7 @@
 
         Task<decimal> CalculateMonthlyPayment(decimal totalLoan, decimal totalPeriodYears);
 
-        Task<decimal> CalculateAmountInterestRate(decimal totalLoan, decimal totalPeriodYears);
+        Task<decimal> CalculateAmountInterestRate(decimal totalLoan, decimal totalPeriodYears, decimal monthlyPayment);
 
         Task<decimal> CalculateAdministrationFees(decimal totalLoan);
     }

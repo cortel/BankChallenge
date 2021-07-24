@@ -86,12 +86,12 @@
                 // Arrange
                 var totalLoan = 500000;
                 var years = 10;
-
+                var monthlyPay = 5303.28M;
                 // Act
-                var result = paymentService.CalculateAmountInterestRate(totalLoan, years).GetAwaiter().GetResult();
+                var result = paymentService.CalculateAmountInterestRate(totalLoan, years, monthlyPay).GetAwaiter().GetResult();
 
                 // Assert
-                Assert.AreEqual(136393.09M, result);
+                Assert.AreEqual(136393.60M, result);
             }
 
             [TestMethod]
