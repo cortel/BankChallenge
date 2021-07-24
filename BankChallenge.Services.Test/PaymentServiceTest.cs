@@ -52,7 +52,6 @@
 
                 // I am not sure if my calculations are wrong, or the number is rounded
                 // actual 5303,2757619537767110063718886
-
                 Assert.AreEqual(5303.28, result.Result);
             }
 

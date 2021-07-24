@@ -45,6 +45,11 @@
             var rateAtPowerOfPeriods = (decimal)Math.Pow((double)(1 + ratePerPeriod), (double)totalPeriods);
 
             // can't await here. i will await on method call.
+
+            // since my result has many many floating numbers, i think is more accurate
+            // is the result needed is 5303.28, and not 5303,2757619537767110063718886
+            // i can create a separate function that checks if the floating nr is in the range of 3
+            // and round it + 1. Again, I do not know bank policies, protocols regards such.
             return (totalLoan * ratePerPeriod * rateAtPowerOfPeriods) / (rateAtPowerOfPeriods - 1);
         }
 
