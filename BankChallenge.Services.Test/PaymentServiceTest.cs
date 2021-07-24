@@ -2,11 +2,8 @@
 {
     using BankChallenge.Common.Configuration;
     using BankChallenge.Services.Services;
-    using BankChallenge.Services.Test.Infrastructure;
-    using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Options;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Threading.Tasks;
 
     public class PaymentServiceTest
     {
@@ -34,8 +31,17 @@
             [TestCategory("Create")]
             public void Can_Create_Payment()
             {
-                // more of an integration test.
+                // Arrange
+                // this is more of an integration test.
+                var totalLoan = 500000;
+                var years = 10;
 
+                // Act
+                var result = paymentService.Create(totalLoan, years).GetAwaiter().GetResult();
+
+                // Assert
+                Assert.IsNotNull(result);
+                Assert.AreEqual(5000M, result.TotalPaidAdminFees);
             }
 
             [TestMethod]
