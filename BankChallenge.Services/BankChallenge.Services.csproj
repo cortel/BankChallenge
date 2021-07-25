@@ -19,4 +19,8 @@
 	  <ProjectReference Include="..\BankChallenge.Common\BankChallenge.Common.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Models\Payment\In\" />
+	</ItemGroup>
+
 </Project>

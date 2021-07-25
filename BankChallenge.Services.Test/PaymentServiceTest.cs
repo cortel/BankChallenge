@@ -2,10 +2,11 @@
 {
     using BankChallenge.Common.Configuration;
     using BankChallenge.Services.Services;
+    using BankChallenge.Services.Test.Infrastructure;
     using Microsoft.Extensions.Options;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-    public class PaymentServiceTest
+    public class PaymentServiceTest : BaseTest
     {
         private readonly PaymentService paymentService;
         private readonly IOptions<LoanConfiguration> loanConfig;
